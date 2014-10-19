@@ -41,7 +41,15 @@
                 android:paddingBottom="10dp"
                 android:layout_weight="1"
                 />
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+
+=======
+                
+>>>>>>> origin/master
+>>>>>>> origin/master
          </LinearLayout>
 
 </LinearLayout>
