@@ -1,37 +1,47 @@
 package com.wesleyreisz.mymusic;
 
-import android.app.Activity;
+import android.app.Fragment;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.wesleyreisz.mymusic.R;
+import com.wesleyreisz.mymusic.SongAdapter;
 import com.wesleyreisz.mymusic.model.Song;
 import com.wesleyreisz.mymusic.service.MockMusicService;
 
 import java.util.List;
 
 
-public class MyMusicActivity extends Activity {
+public class MyMusicActivityFragment extends Fragment {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_music);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState){
+        return inflater.inflate(R.layout.listview_for_each_song_fragment, container, false);
+    }
 
-        ListView listView = (ListView)findViewById(R.id.ListViewSong);
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        ListView listView = (ListView)getView().findViewById(R.id.ListViewSong);
         List<Song> songs = new MockMusicService().findAll();
 
-        SongAdapter songAdapter = new SongAdapter(this, R.layout.activity_my_music,songs);
+        SongAdapter songAdapter = new SongAdapter(getActivity(), R.layout.activity_my_music,songs);
 
 
     }
 
 
-    @Override
+
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.my_music, menu);
+        getActivity().getMenuInflater().inflate(R.menu.my_music, menu);
         return true;
     }
 
